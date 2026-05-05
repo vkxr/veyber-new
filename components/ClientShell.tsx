@@ -16,12 +16,12 @@ import { usePathname } from "next/navigation";
 
 export default function ClientShell() {
   const pathname = usePathname();
-  const isReviewPage = pathname === "/review";
+  const hidePopups = pathname?.startsWith("/review") || pathname?.startsWith("/admin");
 
   return (
     <>
-      {!isReviewPage && <PromoPopup />}
-      <FloatingButtons />
+      {!hidePopups && <PromoPopup />}
+      {!hidePopups && <FloatingButtons />}
     </>
   );
 }

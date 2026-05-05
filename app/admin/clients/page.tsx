@@ -137,7 +137,7 @@ export default function AdminClientsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-1">Business Name</label>
-                <input required name="businessName" value={formData.businessName} onChange={handleInputChange} className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-black focus:border-black transition-colors" placeholder="e.g. Joe's Cafe" />
+                <input required name="businessName" value={formData.businessName} onChange={handleInputChange} className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-black focus:border-black transition-colors" placeholder="e.g. Veyber Services" />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Business Type</label>
@@ -155,7 +155,7 @@ export default function AdminClientsPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Location</label>
-                <input name="location" value={formData.location} onChange={handleInputChange} className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-black focus:border-black transition-colors" placeholder="e.g. New York, NY" />
+                <input name="location" value={formData.location} onChange={handleInputChange} className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-1 focus:ring-black focus:border-black transition-colors" placeholder="e.g. Vadodara, Gujarat" />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Tone</label>
