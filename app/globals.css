@@ -1,0 +1,378 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-on-secondary-container: #98b5f5;
+  --color-on-primary-fixed-variant: #004396;
+  --color-tertiary-container: #f0661b;
+  --color-on-surface-variant: #c1c6d7;
+  --color-outline-variant: #414755;
+  --color-on-primary-container: #00275e;
+  --color-secondary-fixed: #d8e2ff;
+  --color-surface: #111225;
+  --color-on-error: #690005;
+  --color-on-tertiary-fixed-variant: #7d2d00;
+  --color-error-container: #93000a;
+  --color-on-secondary-fixed-variant: #27457e;
+  --color-surface-container-high: #27283d;
+  --color-tertiary-fixed: #ffdbcd;
+  --color-tertiary-fixed-dim: #ffb596;
+  --color-inverse-on-surface: #2e2f43;
+  --color-surface-variant: #323348;
+  --color-background: #111225;
+  --color-surface-container: #1d1e32;
+  --color-on-primary: #002e6a;
+  --color-on-secondary: #082e66;
+  --color-surface-bright: #37374d;
+  --color-secondary-container: #27457e;
+  --color-on-background: #e1e0fb;
+  --color-secondary: #aec6ff;
+  --color-primary-fixed-dim: #aec6ff;
+  --color-surface-container-highest: #323348;
+  --color-on-error-container: #ffdad6;
+  --color-outline: #8b90a1;
+  --color-error: #ffb4ab;
+  --color-inverse-primary: #005ac4;
+  --color-primary-container: #4f8eff;
+  --color-tertiary: #ffb596;
+  --color-surface-container-low: #191a2d;
+  --color-primary: #aec6ff;
+  --color-on-primary-fixed: #001a42;
+  --color-inverse-surface: #e1e0fb;
+  --color-on-secondary-fixed: #001a42;
+  --color-on-tertiary-container: #4d1900;
+  --color-surface-dim: #111225;
+  --color-on-tertiary: #581e00;
+  --color-surface-tint: #aec6ff;
+  --color-on-tertiary-fixed: #360f00;
+  --color-surface-container-lowest: #0b0c1f;
+  --color-primary-fixed: #d8e2ff;
+  --color-on-surface: #e1e0fb;
+  --color-secondary-fixed-dim: #aec6ff;
+
+  --font-headline: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  overflow: hidden;
+  text-align: center;
+  flex-shrink: 0;
+  vertical-align: -0.125em; /* standard vertical alignment for icons */
+}
+
+/* ── Off-screen rendering optimization ─────────── */
+/* Skips rendering of below-fold content until user scrolls near it.
+   Dramatically reduces initial layout/style cost on 1000+ element pages. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ── Hero animations ────────────────────────────── */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0px);   }
+  50%      { transform: translateY(-14px); }
+}
+
+@keyframes stat-card-1 {
+  0%, 100% { transform: translateY(0px) rotate(-1.5deg);  }
+  50%      { transform: translateY(-10px) rotate(-1.5deg); }
+}
+
+@keyframes stat-card-2 {
+  0%, 100% { transform: translateY(0px) rotate(1deg);  }
+  50%      { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes stat-card-3 {
+  0%, 100% { transform: translateY(0px);  }
+  50%      { transform: translateY(-12px); }
+}
+
+.hero-content-anim {
+  animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  opacity: 0;
+}
+
+.hero-dashboard-float {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+.stat-card-1 { animation: stat-card-1 5s ease-in-out infinite; }
+.stat-card-2 { animation: stat-card-2 7s ease-in-out 0.6s infinite; }
+.stat-card-3 { animation: stat-card-3 5.5s ease-in-out 1.2s infinite; }
+
+/* ── Respect reduced motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-content-anim {
+    animation: none;
+    opacity: 1;
+  }
+  .hero-dashboard-float,
+  .stat-card-1,
+  .stat-card-2,
+  .stat-card-3 {
+    animation: none;
+  }
+  .animate-ping {
+    animation: none;
+    opacity: 0.75;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ── Offer Banner (marquee) ──────────────────────── */
+.offer-banner {
+  position: fixed;
+  top: 52px;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  height: 28px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #080b1a 0%, #0f1535 50%, #080b1a 100%);
+  border-bottom: 1px solid rgba(174, 198, 255, 0.08);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 640px) {
+  .offer-banner { top: 60px; height: 30px; }
+}
+
+.offer-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: offer-marquee 40s linear infinite;
+}
+
+.offer-banner:hover .offer-track {
+  animation-play-state: paused;
+}
+
+.offer-scroll {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.offer-item {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(225, 224, 251, 0.85);
+  padding: 0 6px;
+  font-family: var(--font-body);
+}
+
+@media (min-width: 640px) {
+  .offer-item { font-size: 12px; padding: 0 12px; }
+}
+
+.offer-separator {
+  color: rgba(174, 198, 255, 0.3);
+  font-size: 7px;
+  padding: 0 2px;
+  user-select: none;
+}
+
+.offer-highlight {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
+  background-size: 200% 100%;
+  animation: offer-shimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.offer-phone {
+  color: #aec6ff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.offer-phone:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+@keyframes offer-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes offer-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offer-track { animation: none; }
+  .offer-highlight { animation: none; }
+}
+
+/* Light mode banner */
+html:not(.dark) .offer-banner {
+  background: linear-gradient(90deg, #e4e9fd 0%, #d5dcf8 50%, #e4e9fd 100%);
+  border-bottom-color: rgba(23, 73, 192, 0.1);
+  box-shadow: 0 1px 8px rgba(17, 18, 37, 0.06);
+}
+html:not(.dark) .offer-item { color: rgba(17, 18, 37, 0.78); }
+html:not(.dark) .offer-separator { color: rgba(23, 73, 192, 0.25); }
+html:not(.dark) .offer-highlight {
+  background: linear-gradient(90deg, #d97706, #b45309, #d97706);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+html:not(.dark) .offer-phone { color: #1749c0; }
+html:not(.dark) .offer-phone:hover { color: #0d2e7a; }
+
+/* ══ LIGHT MODE — CSS variable overrides ════════════════════════
+   @theme sets dark-mode defaults at :root.
+   html:not(.dark) is more specific and wins for every variable.
+   ═══════════════════════════════════════════════════════════════ */
+html:not(.dark) {
+  color-scheme: light;
+
+  /* Surfaces */
+  --color-surface:                    #f4f6ff;
+  --color-background:                 #f4f6ff;
+  --color-surface-dim:                #e4e7f7;
+  --color-surface-bright:             #ffffff;
+  --color-surface-container-lowest:   #ffffff;
+  --color-surface-container-low:      #eaedfc;
+  --color-surface-container:          #e4e7f7;
+  --color-surface-container-high:     #d9ddf0;
+  --color-surface-container-highest:  #cdd1e9;
+  --color-surface-variant:            #dde1f4;
+
+  /* Content */
+  --color-on-surface:         #111225;
+  --color-on-background:      #111225;
+  --color-on-surface-variant: #43476a;
+  --color-inverse-surface:    #2e2f43;
+  --color-inverse-on-surface: #f4f6ff;
+
+  /* Primary — deep blue on light bg */
+  --color-primary:                   #1749c0;
+  --color-primary-container:         #1e5ee6;
+  --color-on-primary:                #ffffff;
+  --color-on-primary-container:      #e8f0fe;
+  --color-primary-fixed:             #d8e2ff;
+  --color-primary-fixed-dim:         #aec6ff;
+  --color-on-primary-fixed:          #001a42;
+  --color-on-primary-fixed-variant:  #003bac;
+  --color-inverse-primary:           #aec6ff;
+  --color-surface-tint:              #1749c0;
+
+  /* Secondary */
+  --color-secondary:                  #3553a8;
+  --color-secondary-container:        #c5d3ff;
+  --color-on-secondary:               #ffffff;
+  --color-on-secondary-container:     #001a42;
+  --color-secondary-fixed:            #dce3ff;
+  --color-secondary-fixed-dim:        #b3c2f5;
+  --color-on-secondary-fixed:         #001347;
+  --color-on-secondary-fixed-variant: #1e3891;
+
+  /* Tertiary */
+  --color-tertiary:             #ae3b00;
+  --color-tertiary-container:   #d44b0f;
+  --color-on-tertiary:          #ffffff;
+  --color-on-tertiary-container: #3d1000;
+
+  /* Borders */
+  --color-outline:         #74788f;
+  --color-outline-variant: #c5c9de;
+
+  /* Error */
+  --color-error:             #ba1a1a;
+  --color-on-error:          #ffffff;
+  --color-error-container:   #ffdad6;
+  --color-on-error-container: #410002;
+}
+
+/* ── Navbar in light mode ── */
+html:not(.dark) .site-nav {
+  background-color: rgba(244, 246, 255, 0.90) !important;
+  box-shadow: 0 4px 32px rgba(17, 18, 37, 0.08), 0 1px 0 rgba(17, 18, 37, 0.06) !important;
+}
+html:not(.dark) .site-nav .nav-link        { color: #43476a; }
+html:not(.dark) .site-nav .nav-link:hover  { color: #111225 !important; }
+html:not(.dark) .site-nav .nav-link.active { color: #1749c0 !important; border-bottom-color: #1749c0 !important; }
+
+/* ── text-white → dark text on light backgrounds ── */
+html:not(.dark) .text-white { color: #111225; }
+html:not(.dark) .text-white\/90 { color: rgba(17, 18, 37, 0.90); }
+html:not(.dark) .text-white\/80 { color: rgba(17, 18, 37, 0.80); }
+html:not(.dark) .text-white\/75 { color: rgba(17, 18, 37, 0.75); }
+html:not(.dark) .text-white\/70 { color: rgba(17, 18, 37, 0.70); }
+html:not(.dark) .text-white\/60 { color: rgba(17, 18, 37, 0.60); }
+html:not(.dark) .text-white\/50 { color: rgba(17, 18, 37, 0.50); }
+html:not(.dark) .text-white\/40 { color: rgba(17, 18, 37, 0.40); }
+html:not(.dark) .text-white\/35 { color: rgba(17, 18, 37, 0.35); }
+html:not(.dark) .text-white\/30 { color: rgba(17, 18, 37, 0.30); }
+html:not(.dark) .text-white\/25 { color: rgba(17, 18, 37, 0.25); }
+html:not(.dark) .text-white\/20 { color: rgba(17, 18, 37, 0.20); }
+html:not(.dark) .text-white\/10 { color: rgba(17, 18, 37, 0.10); }
+
+html:not(.dark) .hover\:text-white:hover,
+html:not(.dark) .group:hover .group-hover\:text-white,
+html:not(.dark) .group:hover .group-hover\:text-white\/90,
+html:not(.dark) .group:hover .group-hover\:text-white\/80 { color: #111225 !important; }
+
+/* ── force-dark: always-dark containers (dashboard mockup, footer, CTA) ── */
+html:not(.dark) .force-dark { color-scheme: dark; }
+html:not(.dark) .force-dark .text-white { color: #ffffff !important; }
+html:not(.dark) .force-dark .hover\:text-white:hover,
+html:not(.dark) .force-dark .group:hover .group-hover\:text-white { color: #ffffff !important; }
+html:not(.dark) .force-dark .text-white\/90 { color: rgba(255, 255, 255, 0.90) !important; }
+html:not(.dark) .force-dark .text-white\/80 { color: rgba(255, 255, 255, 0.80) !important; }
+html:not(.dark) .force-dark .text-white\/75 { color: rgba(255, 255, 255, 0.75) !important; }
+html:not(.dark) .force-dark .text-white\/70 { color: rgba(255, 255, 255, 0.70) !important; }
+html:not(.dark) .force-dark .text-white\/60 { color: rgba(255, 255, 255, 0.60) !important; }
+html:not(.dark) .force-dark .text-white\/50 { color: rgba(255, 255, 255, 0.50) !important; }
+html:not(.dark) .force-dark .text-white\/40 { color: rgba(255, 255, 255, 0.40) !important; }
+html:not(.dark) .force-dark .text-white\/35 { color: rgba(255, 255, 255, 0.35) !important; }
+html:not(.dark) .force-dark .text-white\/30 { color: rgba(255, 255, 255, 0.30) !important; }
+html:not(.dark) .force-dark .text-white\/25 { color: rgba(255, 255, 255, 0.25) !important; }
+html:not(.dark) .force-dark .text-white\/20 { color: rgba(255, 255, 255, 0.20) !important; }
+html:not(.dark) .force-dark .text-white\/10 { color: rgba(255, 255, 255, 0.10) !important; }
+html:not(.dark) .stat-card-1,
+html:not(.dark) .stat-card-2,
+html:not(.dark) .stat-card-3 {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(17, 18, 37, 0.10) !important;
+  box-shadow: 0 8px 32px rgba(17, 18, 37, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+html:not(.dark) .stat-card-1 p,
+html:not(.dark) .stat-card-2 p,
+html:not(.dark) .stat-card-3 p { color: rgba(68, 73, 106, 0.65) !important; }

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(npx next *)",
+      "PowerShell(node \"e:\\\\veyber-main\\\\node_modules\\\\next\\\\dist\\\\bin\\\\next\" build \"e:\\\\veyber-main\" 2>&1)",
+      "PowerShell(node \"e:\\\\veyber-main\\\\node_modules\\\\next\\\\dist\\\\cli\\\\next.js\" build --help 2>&1)",
+      "Bash(npm run *)",
+      "PowerShell(Invoke-WebRequest -Uri http://localhost:3001/sitemap.xml -UseBasicParsing)",
+      "Bash(del \"e:\\\\veyber-main\\\\public\\\\sitemap.xml\")"
+    ]
+  }
+}

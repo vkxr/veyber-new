@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <!-- Storefront body -->
+  <path d="M24 96v72a8 8 0 008 8h128a8 8 0 008-8V96" fill="#4285F4"/>
+  <!-- Door -->
+  <rect x="72" y="128" width="48" height="48" rx="4" fill="#3367D6"/>
+  <!-- Window left -->
+  <rect x="36" y="108" width="28" height="24" rx="3" fill="#fff" opacity="0.9"/>
+  <!-- Window right -->
+  <rect x="128" y="108" width="28" height="24" rx="3" fill="#fff" opacity="0.9"/>
+  <!-- Awning scallops -->
+  <path d="M16 96c0-17.7 14.3-24 24-24s16 6.3 16 24" fill="#4285F4"/>
+  <path d="M56 96c0-17.7 6.3-24 16-24s16 6.3 16 24" fill="#EA4335"/>
+  <path d="M88 96c0-17.7 6.3-24 16-24s16 6.3 16 24" fill="#FBBC04"/>
+  <path d="M120 96c0-17.7 6.3-24 16-24s16 6.3 16 24" fill="#EA4335"/>
+  <path d="M152 96c0-17.7 6.3-24 16-24s24 6.3 24 24" fill="#4285F4"/>
+  <!-- Roof line -->
+  <rect x="16" y="64" width="160" height="8" rx="2" fill="#4285F4"/>
+  <!-- G Letter -->
+  <circle cx="96" cy="52" r="20" fill="#fff"/>
+  <text x="96" y="60" text-anchor="middle" font-family="Google Sans,Arial,sans-serif" font-size="28" font-weight="700" fill="#4285F4">G</text>
+  <!-- Green tag at bottom-right -->
+  <path d="M148 152l20-20v28a8 8 0 01-8 8h-20l8-16z" fill="#34A853"/>
+</svg>
