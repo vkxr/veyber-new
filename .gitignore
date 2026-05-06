@@ -46,3 +46,5 @@ AGENTS.md
 
 # OS
 Thumbs.db
+
+/lib/generated/prisma
