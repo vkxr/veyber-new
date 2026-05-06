@@ -17,7 +17,7 @@ export async function GET() {
     const clients = await prisma.client.findMany({
       orderBy: { createdAt: 'desc' }
     });
-    const mappedClients = clients.map(client => ({ ...client, _id: client.id }));
+    const mappedClients = clients.map((client: any) => ({ ...client, _id: client.id }));
     return NextResponse.json({ success: true, data: mappedClients });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 400 });
